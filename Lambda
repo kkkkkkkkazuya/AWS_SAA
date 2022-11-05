@@ -1,0 +1,16 @@
+Lambda
+
+ デフォルトのタイムアウトは3秒で、
+AWS Lambdaのリクエストあたりの最大実行時間は900秒です。
+これは15分に相当します。よって、15分を超過した処理が発生すると計算処理が途中で終了してしまいます。
+
+Amazon Kinesis Data Firehose では、データストアにロードする前にストリーミングデータを準備するよう設定できます。AWS マネジメントコンソールの Amazon Kinesis Data Firehose 配信ストリーム設定タブから、AWS Lambda 関数を選択します。この関数は、Amazon Kinesis Data Firehose で自動的にすべての入力データレコードに適用されます。
+
+他のAWSリソースと連携するLambdaファンクションを作成する際にはIAMによる実行ロールをLambdaファンクションに設定して、アクセス権限を付与することが必要です。 このIAMロールに付与されたアクセス権限によって、Lambdaファンクションが操作できるAWSリソースの範囲が決まります。
+
+Lambda 関数の実行ロールは、AWS サービスおよびリソースにアクセスする許可を関数に付与する AWS Identity and Access Management (IAM) ロールです。関数を作成する際にこのロールを指定すると、関数が呼び出されたときにLambda がこのロールを引き受けます。Amazon CloudWatch にログを送信し、トレースデータを AWS X-Ray にアップロードするためのアクセス許可をもつ、開発用の実行ロールを作成できます。
+
+これまではHTTP経由で Lambda関数を実行するためには、API Gateway を経由する必要がありました。
+しかしながら、 
+関数 URL(Function URLs)
+ という新機能が実装されたため、API Gatewayを省略したパブリックに公開するAPIや、簡易な認証実装でも差し支えの無いAPIを AWSLambdaで実装することができます。
