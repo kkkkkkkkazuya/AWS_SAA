@@ -14,3 +14,16 @@ Lambda 関数の実行ロールは、AWS サービスおよびリソースにア
 しかしながら、 
 関数 URL(Function URLs)
  という新機能が実装されたため、API Gatewayを省略したパブリックに公開するAPIや、簡易な認証実装でも差し支えの無いAPIを AWSLambdaで実装することができます。
+
+RDSとの接続
+RDSプロキシとの接続じゃ無いといけない
+
+
+Lambda関数をAWS SAMを利用して構成展開をする
+その展開にはCloudformationテンプレートを利用することになります。テンプレート内では、LambdaからRDSへのアクセスを実施するため、RDS側のSecurityGroupIngressにLambdaセキュリティグループを許可する設定を行います。SecurityGroupEgress は、通常、Ingress ルールと Egress ルールの中でセキュリティグループが相互に参照できるようにするために必要な場合にのみ使用します。SecurityGroupIngress と SecurityGroupEgress は、通常、Ingress ルールと Egress ルールの中でセキュリティグループが相互に参照できるようにするために必要な場合にのみ使用します。それ以外の場合、SecurityGroup の埋め込み Ingress ルールと Egress ルールを使用します。
+
+Lambda Layer
+複数のLambda関数でライブラリを共有できる仕組みであり、一定の機能をLayerにまとめて、構成することができます。これまでは同じライブラリを利用する関数が複数あった場合、全ての関数に対してライブラリを含めてパッケージングすることが必要でした。それを、ライブラリをLayerとしてアップロードしておくことで、個々の関数は共通のLayerを使用することができます。今回のシナリオでは、複数のLambda関数の処理の一部分が重複しています。これをLambda Layerを利用することで、重複部分も共有化することができます。
+
+Invocation
+Lambda関数の名前空間にあるメトリクスです。イベントまたは API 呼び出しに応じて呼び出される関数の回数を測定します。
