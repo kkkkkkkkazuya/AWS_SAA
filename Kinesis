@@ -1,0 +1,28 @@
+Amazon Kinesis
+
+データが欠落しないこと、耐久性があること、およびデータを到着順にストリーミングする
+
+※Amazon Kinesis Data FirehoseはDynamoDBをデータ配信先として指定することができません。
+
+ストリーミングデータをデータレイクやデータストア、分析ツールに配信するサービスです。ストリーミングデータをキャプチャして変換しつつ、Amazon S3、Amazon Redshift、Amazon Elasticsearch Serviceにロードします。
+※DynamoDBに配信することはできません
+
+Amazon Kinesis Data Firehoseはデータ変換処理をコーディングするためにLambda関数を組み込んで利用することが可能です。
+
+動画・音声・アプリケーションログ・IoTデバイスからのセンサーデータなどのストリーミングデータをリアルタイムで収集・処理・分析できるサービス
+
+・Kinesis Data Streams 
+データを低レイテンシーでリアルタイムに利用できる機能です。大量のデータを効率よく処理するために、『シャード』と呼ばれる単位でデータを分割して並列処理を行います。シャードとは、データストリーム内の一意に識別されたデータレコードの単位です。
+
+データ保持期間はデフォルト24 時間で、最大値は 168時間
+
+
+・Kinesis Data Analytics 
+ストリーミングデータに対してリアルタイムで分析が可能な機能です。SQLクエリを実行し分析するため、ストリーミングデータの合計値や平均値などを簡単に計算できます。
+
+・Kinesis Data Firehose 
+簡単な設定でストレージサービスにデータを流し込むことができる機能です。暗号化や圧縮技術にも対応しています。Kinesis Data Firehoseはストリーミングデータを S3やRedshiftなどのデータストアや分析サービスに送信したり、ストリーミングデータ動作環境の一部としてKinesis Data AnalyticsやKinesis Data Streams・Kinesis Video Streamsと併せて使用されるケースもあります。
+
+
+・Kinesis Video Streams 
+動画撮影デバイスから直接AWS上にストリーミング配信が可能な機能です。
